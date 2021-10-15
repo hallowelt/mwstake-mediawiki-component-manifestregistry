@@ -3,13 +3,13 @@
 namespace MWStake\MediaWiki\Component\ManifestRegistry;
 
 use ExtensionRegistry;
-use MediaWiki\MediaWikiServices;
+use GlobalVarConfig;
 
 class ManifestAttributeBasedRegistry implements IRegistry {
 
-	const OVERRIDE_SET = 'set';
-	const OVERRIDE_MERGE = 'merge';
-	const OVERRIDE_REMOVE = 'remove';
+	public const OVERRIDE_SET = 'set';
+	public const OVERRIDE_MERGE = 'merge';
+	public const OVERRIDE_REMOVE = 'remove';
 
 	/**
 	 *
@@ -45,9 +45,8 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 		}
 
 		if ( $this->overrides === null ) {
-			$services = MediaWikiServices::getInstance();
-			$config = $services->getConfigFactory()->makeConfig( 'bsg' );
-			$configOverrides = $config->get( 'ExtensionAttributeRegistryOverrides' );
+			$config = new GlobalVarConfig( 'mwsgManifestRegistry' );
+			$configOverrides = $config->get( 'Overrides' );
 
 			$this->overrides = [];
 			if ( isset( $configOverrides[ $attribName ] ) ) {

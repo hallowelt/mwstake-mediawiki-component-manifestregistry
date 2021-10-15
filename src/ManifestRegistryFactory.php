@@ -21,6 +21,7 @@ class ManifestRegistryFactory {
 	/**
 	 *
 	 * @param ExtensionRegistry $extensionRegistry
+	 * @param array $overrides
 	 */
 	public function __construct( $extensionRegistry, $overrides ) {
 		$this->extensionRegistry = $extensionRegistry;
