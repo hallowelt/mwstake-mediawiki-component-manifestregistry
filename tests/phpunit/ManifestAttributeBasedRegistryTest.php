@@ -3,6 +3,7 @@
 namespace MWStake\MediaWiki\Component\ManifestRegistry\Test;
 
 use ExtensionRegistry;
+use MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry;
 use PHPUnit\Framework\TestCase;
 
 /**
