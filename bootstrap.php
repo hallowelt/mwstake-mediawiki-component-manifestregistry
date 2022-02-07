@@ -6,9 +6,12 @@ if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_MANIFESTREGISTRY_VERSION' ) ) {
 
 define( 'MWSTAKE_MEDIAWIKI_COMPONENT_MANIFESTREGISTRY_VERSION', '2.0.1' );
 
-$GLOBALS['wgServiceWiringFiles'][] = __DIR__ . '/includes/ServiceWiring.php';
+MWStake\MediaWiki\ComponentLoader\Bootstrapper::getInstance()
+->register( 'manifestregistry', function () {
+	$GLOBALS['wgServiceWiringFiles'][] = __DIR__ . '/includes/ServiceWiring.php';
 
-if ( !isset( $GLOBALS['mwsgManifestRegistryOverrides'] ) ) {
-	// allow setting on LocalSettings level
-	$GLOBALS['mwsgManifestRegistryOverrides'] = [];
-}
+	if ( !isset( $GLOBALS['mwsgManifestRegistryOverrides'] ) ) {
+		// allow setting on LocalSettings level
+		$GLOBALS['mwsgManifestRegistryOverrides'] = [];
+	}
+} );
