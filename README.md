@@ -52,7 +52,8 @@ $allMyValues = $registry->getAll();
 
 ## Configuration
 - `mwsgManifestRegistryOverrides`: Used to overwrite existing registries by either add, remove or merge their values:
-*Example 1:
+
+*Example 1:*
 ```php
 $GLOBALS['mwsgManifestRegistryOverrides']['MyRegistry'] = [
 	'set' => [
