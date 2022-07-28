@@ -63,7 +63,7 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 			}
 		}
 
-		if ( $objectFactory === null ) {
+		if ( $this->objectFactory === null ) {
 			$services = MediaWikiServices::getInstance();
 			$this->objectFactory = $services->getObjectFactory();
 		}
