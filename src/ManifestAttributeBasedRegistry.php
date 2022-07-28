@@ -4,6 +4,8 @@ namespace MWStake\MediaWiki\Component\ManifestRegistry;
 
 use ExtensionRegistry;
 use GlobalVarConfig;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectFactory;
 
 class ManifestAttributeBasedRegistry implements IRegistry {
 
@@ -30,15 +32,21 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	protected $overrides = [];
 
 	/**
+	 * @var QbjectFactory
+	 */
+	protected $objectFactory = null;
+
+	/**
 	 *
 	 * @param string $attribName
 	 * @param \ExtensionRegistry|null $extensionRegistry
 	 * @param array|null $overrides
 	 */
-	public function __construct( $attribName, $extensionRegistry = null, $overrides = null ) {
+	public function __construct( $attribName, $extensionRegistry = null, $overrides = null, ObjectFactory $objectFactory = null ) {
 		$this->attribName = $attribName;
 		$this->extensionRegistry = $extensionRegistry;
 		$this->overrides = $overrides;
+		$this->objectFactory = $objectFactory;
 
 		if ( $this->extensionRegistry === null ) {
 			$this->extensionRegistry = ExtensionRegistry::getInstance();
@@ -52,6 +60,11 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 			if ( isset( $configOverrides[ $attribName ] ) ) {
 				$this->overrides = $configOverrides[ $attribName ];
 			}
+		}
+
+		if ( $objectFactory === null ) {
+			$services = MediaWikiServices::getInstance();
+			$this->objectFactory = $services->getObjectFactory();
 		}
 	}
 
@@ -120,6 +133,21 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 		}
 
 		return $registry;
+	}
+
+	/**
+	 * @param string $key
+	 * @param array $options
+	 * @return object
+	 */
+	public function createObjectFromSpec( $key, $options = [] ): object {
+		$registry = $this->getRegistryArray();
+
+		if ( !isset( $registry[$key] ) ) {
+			return null;
+		}
+
+		return $this->objectFactory->createObject( $registry[$key], $options );
 	}
 
 }
