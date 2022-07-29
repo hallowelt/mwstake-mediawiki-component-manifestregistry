@@ -48,7 +48,7 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 		$extensionRegistry = null,
 		$overrides = null,
 		ObjectFactory $objectFactory = null
-		){
+		) {
 		$this->attribName = $attribName;
 		$this->extensionRegistry = $extensionRegistry;
 		$this->overrides = $overrides;
