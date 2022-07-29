@@ -40,7 +40,7 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	 *
 	 * @param string $attribName
 	 * @param \ExtensionRegistry|null $extensionRegistry
-	 * @param ObjectFactory $objectFactory
+	 * @param ObjectFactory|null $objectFactory
 	 * @param array|null $overrides
 	 */
 	public function __construct( $attribName, $extensionRegistry = null, $overrides = null, ObjectFactory $objectFactory = null ) {
