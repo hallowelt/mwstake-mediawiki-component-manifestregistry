@@ -17,11 +17,11 @@ class ManifestObjectFactory {
 	private $objectFactory = null;
 
 	/**
-	 * @param ManifestRegistryFactory $registry
+	 * @param ManifestRegistryFactory $registryFactory
 	 * @param ObjectFactory $objectFactory
 	 * @return void
 	 */
-	public function __constuct(
+	public function __construct(
 		ManifestRegistryFactory $registryFactory,
 		ObjectFactory $objectFactory
 		) {
