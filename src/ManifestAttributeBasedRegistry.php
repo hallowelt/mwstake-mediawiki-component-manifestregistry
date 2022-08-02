@@ -35,11 +35,7 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	 * @param \ExtensionRegistry|null $extensionRegistry
 	 * @param array|null $overrides
 	 */
-	public function __construct(
-		$attribName,
-		$extensionRegistry = null,
-		$overrides = null
-		) {
+	public function __construct( $attribName, $extensionRegistry = null, $overrides = null ) {
 		$this->attribName = $attribName;
 		$this->extensionRegistry = $extensionRegistry;
 		$this->overrides = $overrides;
