@@ -3,7 +3,6 @@
 namespace MWStake\MediaWiki\Component\ManifestRegistry;
 
 use ExtensionRegistry;
-use Wikimedia\ObjectFactory;
 
 class ManifestRegistryFactory {
 
@@ -21,20 +20,12 @@ class ManifestRegistryFactory {
 
 	/**
 	 *
-	 * @var [type]
-	 */
-	private $objectFactory = null;
-
-	/**
-	 *
 	 * @param ExtensionRegistry $extensionRegistry
 	 * @param array $overrides
-	 * @param ObjectFactory|null $objectFactory
 	 */
-	public function __construct( $extensionRegistry, $overrides, $objectFactory = null ) {
+	public function __construct( $extensionRegistry, $overrides ) {
 		$this->extensionRegistry = $extensionRegistry;
 		$this->overrides = $overrides;
-		$this->objectFactory = $objectFactory;
 	}
 
 	/**
@@ -46,8 +37,7 @@ class ManifestRegistryFactory {
 		$registry = new ManifestAttributeBasedRegistry(
 			$manifestAttributeKey,
 			$this->extensionRegistry,
-			$this->overrides,
-			$this->objectFactory
+			$this->overrides
 		);
 
 		return $registry;
