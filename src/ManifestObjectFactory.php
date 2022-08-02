@@ -33,7 +33,7 @@ class ManifestObjectFactory {
 	 * @param string $registryName
 	 * @param string $registryKey
 	 * @param array $options
-	 * @return object
+	 * @return object|null
 	 */
 	public function createObject( $registryName, $registryKey, $options = [] ): object {
 		$registry = $this->registryFactory->get( $registryName );
