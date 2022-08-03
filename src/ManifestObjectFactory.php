@@ -88,7 +88,7 @@ class ManifestObjectFactory {
 
 			if ( $object === null ) {
 				$this->logger->warning(
-					"$registryKey is not a instanceof $instanceof",
+					"The object is not a instance of the wanted class",
 					[
 						'registry' => $registryName,
 						'key' => $registryKey,
