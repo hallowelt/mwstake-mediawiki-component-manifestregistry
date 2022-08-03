@@ -25,6 +25,7 @@ class ManifestObjectFactory {
 	/**
 	 * @param ManifestRegistryFactory $registryFactory
 	 * @param ObjectFactory $objectFactory
+	 * @param LoggerInterface $logger
 	 * @return void
 	 */
 	public function __construct(
