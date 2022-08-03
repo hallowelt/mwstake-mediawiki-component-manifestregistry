@@ -88,10 +88,10 @@ class ManifestObjectFactory {
 
 			if ( $object === null ) {
 				$this->logger->warning(
-					"The object is not a instance of the wanted class",
+					"The object of {key} in {registry} is not a instance of {instanceof}",
 					[
-						'registry' => $registryName,
 						'key' => $registryKey,
+						'registry' => $registryName,
 						'instanceof' => $instanceof
 					]
 				);
