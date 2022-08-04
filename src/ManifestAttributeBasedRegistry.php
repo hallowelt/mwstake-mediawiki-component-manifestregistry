@@ -122,4 +122,35 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 		return $registry;
 	}
 
+	/**
+	 * @param string $key
+	 * @return array
+	 */
+	public function getObjectSpec( $key ): array {
+		$objectSpec = [];
+
+		$registry = $this->getRegistryArray();
+		$specs = isset( $registry[$key] ) ? $registry[$key] : [];
+
+		foreach ( $specs as $name => $value ) {
+			/**
+			 * Attributes get merged together instead of being overwritten.
+			 * This may result in an array for class or factory which is not allowed.
+			 *
+			 * Other specifications like services are an array. It is not possible to
+			 * decide which of them belong to the original factory and which to the override.
+			 */
+			if ( ( $name === 'class' ) && is_array( $value ) ) {
+				$objectSpec[$name] = end( $value );
+				continue;
+			}
+			if ( ( $name === 'factory' ) && is_array( $value ) ) {
+				$objectSpec[$name] = end( $value );
+				continue;
+			}
+			$objectSpec[$name] = $value;
+		}
+		return $objectSpec;
+	}
+
 }

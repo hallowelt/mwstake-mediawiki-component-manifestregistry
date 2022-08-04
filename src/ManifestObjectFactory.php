@@ -2,6 +2,7 @@
 
 namespace MWStake\MediaWiki\Component\ManifestRegistry;
 
+use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory;
 
 class ManifestObjectFactory {
@@ -17,34 +18,89 @@ class ManifestObjectFactory {
 	private $objectFactory = null;
 
 	/**
+	 * @var LoggerInterface
+	 */
+	private $logger = null;
+
+	/**
 	 * @param ManifestRegistryFactory $registryFactory
 	 * @param ObjectFactory $objectFactory
+	 * @param LoggerInterface $logger
 	 * @return void
 	 */
 	public function __construct(
 		ManifestRegistryFactory $registryFactory,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		LoggerInterface $logger
 		) {
 			$this->registryFactory = $registryFactory;
 			$this->objectFactory = $objectFactory;
+			$this->logger = $logger;
 	}
 
 	/**
 	 * @param string $registryName
 	 * @param string $registryKey
 	 * @param array $options
+	 * @param string|null $instanceof
 	 * @return object|null
 	 */
-	public function createObject( $registryName, $registryKey, $options = [] ): object {
+	public function createObject(
+		string $registryName,
+		string $registryKey,
+		array $options = [],
+		string $instanceof = null
+		): ?object {
+		/** @var ManifestAttributeBasedRegistry */
 		$registry = $this->registryFactory->get( $registryName );
 
-		if ( !isset( $registry[$registryKey] ) ) {
-			return null;
+		$spec = $registry->getObjectSpec( $registryKey );
+
+		$object = $this->objectFactory->createObject( $spec, $options );
+
+		if ( ( $instanceof === null ) || is_a( $object, $instanceof, true ) ) {
+			return $object;
 		}
 
-		$spec = $this->registry->getValue( $registryKey );
+		return null;
+	}
 
-		return $this->objectFactory->createObject( $spec, $options );
+	/**
+	 * @param string $registryName
+	 * @param array $options
+	 * @param string|null $instanceof
+	 * @return array
+	 */
+	public function createAllObjects(
+		string $registryName,
+		array $options = [],
+		string $instanceof = null
+		): array {
+		/** @var ManifestAttributeBasedRegistry */
+		$registry = $this->registryFactory->get( $registryName );
+		$registryKeys = $registry->getAllKeys();
+
+		$objects = [];
+		foreach ( $registryKeys as $registryKey ) {
+			$spec = $registry->getObjectSpec( $registryKey );
+			$object = $this->createObject( $registryName, $registryKey, $options, $instanceof );
+			if ( $object === null ) {
+				$this->logger->warning(
+					"The object of {key} in {registry} is not a instance of {instanceof}",
+					[
+						'key' => $registryKey,
+						'registry' => $registryName,
+						'instanceof' => $instanceof
+					]
+				);
+
+				continue;
+			}
+
+			$objects[$registryKey] = $object;
+		}
+
+		return $objects;
 	}
 
 }
