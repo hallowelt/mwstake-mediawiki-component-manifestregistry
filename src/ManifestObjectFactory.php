@@ -51,16 +51,14 @@ class ManifestObjectFactory {
 		array $options = [],
 		string $instanceof = null
 		): ?object {
+		/** @var ManifestAttributeBasedRegistry */
 		$registry = $this->registryFactory->get( $registryName );
 
-		if ( !isset( $registry[$registryKey] ) ) {
-			return null;
-		}
+		$spec = $registry->getObjectSpec( $registryKey );
 
-		$spec = $this->registry->getValue( $registryKey );
 		$object = $this->objectFactory->createObject( $spec, $options );
 
-		if ( ( $instanceof === null ) | is_a( $object, $instanceof, true ) ) {
+		if ( ( $instanceof === null ) || is_a( $object, $instanceof, true ) ) {
 			return $object;
 		}
 
@@ -78,14 +76,14 @@ class ManifestObjectFactory {
 		array $options = [],
 		string $instanceof = null
 		): array {
+		/** @var ManifestAttributeBasedRegistry */
 		$registry = $this->registryFactory->get( $registryName );
 		$registryKeys = $registry->getAllKeys();
 
 		$objects = [];
 		foreach ( $registryKeys as $registryKey ) {
-			$spec = $this->registry->getValue( $registryKey );
-			$object = $this->objectFactory->createObject( $spec, $options, $instanceof );
-
+			$spec = $registry->getObjectSpec( $registryKey );
+			$object = $this->createObject( $registryName, $registryKey, $options, $instanceof );
 			if ( $object === null ) {
 				$this->logger->warning(
 					"The object of {key} in {registry} is not a instance of {instanceof}",
