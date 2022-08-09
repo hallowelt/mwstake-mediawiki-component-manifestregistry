@@ -6,7 +6,7 @@ jobs:
   test:
     name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
     strategy:
-      matrix:
+      matrix: 
         include:
           - mw: 'REL1_35'
             php: 7.4
