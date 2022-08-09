@@ -1,0 +1,4 @@
+# Temporarily disabling all gitignore to test git workflow for unit testing extensions
+# *
+!README
+!.gitignore
