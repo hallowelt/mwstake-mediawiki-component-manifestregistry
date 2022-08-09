@@ -16,10 +16,10 @@ jobs:
         uses: actions/checkout@v2 
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2  
+        uses: shivammathur/setup-php@v2
         with:
           php-version: 7.4
-          tools: composer:2 
+          tools: composer:2
 
       - name: Install dependencies
         run: composer update
@@ -27,7 +27,7 @@ jobs:
       - name: Run check coding conventions
         run: composer test
 
-      # run the action to install MediaWiki, PHP, Composer  
+      # run the action to install MediaWiki, PHP, Composer
       # and run PHPUnit tests for the extension
       - run: echo "Current status for php dependencies and other tests - ${{ job.status }}."
       - name: Mediawiki PHPUnit
@@ -36,4 +36,4 @@ jobs:
           php: ${{ matrix.php }}
           mwbranch: ${{ matrix.mw }}
           extension: Checklists 
-          testgroup: extension-Checklists          
+          testgroup: extension-Checklists
