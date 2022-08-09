@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - mw: "git-actions-unit-test-temp"
+          - mw: "REL1_35"
             php: 7.4
     runs-on: ubuntu-latest
     steps:
