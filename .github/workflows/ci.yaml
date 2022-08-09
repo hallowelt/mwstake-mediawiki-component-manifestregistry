@@ -41,5 +41,5 @@ jobs:
         with:
           php: ${{ matrix.php }}
           mwbranch: ${{ matrix.mw }}
-          extension: Checklists
+          extension: Checklists 
           testgroup: extension-Checklists         
