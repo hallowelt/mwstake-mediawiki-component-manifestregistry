@@ -1,0 +1,47 @@
+{
+	"name": "Checklists",
+	"version": "",
+	"license-name": "GPL-3.0-only",
+	"author": [
+		"[http://www.hallowelt.com Hallo Welt! GmbH]"
+	],
+	"url": "http://www.hallowelt.com",
+	"descriptionmsg": "checklists-desc",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
+	"MessagesDirs": {
+		"Checklists": "i18n"
+	},
+	"AutoloadNamespaces": {
+		"Checklists\\": "src/",
+		"Checklists\\Tests\\": "tests/phpunit"
+	},
+	"ResourceModules": {
+		"ext.checklists": {
+			"scripts": [
+				"ext.checklists.js"
+			],
+			"styles": [
+				"ext.checklists.less"
+			],
+			"dependencies": [
+				"ext.bluespice"
+			]
+		},
+		"ext.checklists.styles": {
+			"styles": [
+				"ext.checklists.static.less"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "Checklists/resources"
+	},
+	"Hooks": {
+		"BeforePageDisplay": "Checklists\\Hook\\BeforePageDisplay\\AddModules::callback",
+		"ParserFirstCallInit": "\\BlueSpice\\Checklists\\Hook\\ParserFirstCallInit\\Parse::callback"
+	},
+	"manifest_version": 2
+}
