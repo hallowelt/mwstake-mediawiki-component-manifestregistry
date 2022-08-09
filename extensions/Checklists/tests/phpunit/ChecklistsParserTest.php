@@ -12,6 +12,7 @@ class ChecklistsParserTest extends TestCase {
 	}
 
 	/**
+	 * @group extension-Checklists
 	 * @covers \Parser
 	 */
 	public function testUncheckedList() {
