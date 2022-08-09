@@ -4,6 +4,12 @@ on: push
 
 jobs:
   test:
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+    strategy:
+      matrix:
+        include:
+          - mw: "git-actions-unit-test-temp"
+            php: 7.4
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -27,7 +33,7 @@ jobs:
       - name: Mediawiki PHPUnit
         uses: wikiteq/mediawiki-phpunit-action@v2
         with:
-          php: 7.4
+          php: ${{ matrix.php }}
+          mwbranch: ${{ matrix.mw }}
           extension: Checklists
           testgroup: extension-Checklists
-
