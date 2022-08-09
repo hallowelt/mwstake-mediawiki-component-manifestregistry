@@ -27,6 +27,7 @@ jobs:
       - name: Mediawiki PHPUnit
         uses: wikiteq/mediawiki-phpunit-action@v2
         with:
+          php: 7.4
           extension: Checklists
           testgroup: extension-Checklists
 
