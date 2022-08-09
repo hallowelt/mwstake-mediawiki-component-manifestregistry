@@ -37,7 +37,7 @@ jobs:
       # and run PHPUnit tests for the extension
       - run: echo "Current status for php dependencies and other tests - ${{ job.status }}."
       - name: Mediawiki PHPUnit
-        uses: wikiteq/mediawiki-phpunit-action@v2
+        uses: Jonty16117/mediawiki-phpunit-action@v2
         with:
           php: ${{ matrix.php }}
           mwbranch: ${{ matrix.mw }}
