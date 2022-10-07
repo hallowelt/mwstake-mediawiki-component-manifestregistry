@@ -56,6 +56,10 @@ class ManifestObjectFactory {
 
 		$spec = $registry->getObjectSpec( $registryKey );
 
+		if ( !isset( $spec['factory'] ) && !isset( $spec['class'] ) ) {
+			return null;
+		}
+
 		$object = $this->objectFactory->createObject( $spec, $options );
 
 		if ( ( $instanceof === null ) || is_a( $object, $instanceof, true ) ) {
