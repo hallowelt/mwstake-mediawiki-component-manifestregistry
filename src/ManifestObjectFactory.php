@@ -3,7 +3,7 @@
 namespace MWStake\MediaWiki\Component\ManifestRegistry;
 
 use Psr\Log\LoggerInterface;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 class ManifestObjectFactory {
 
