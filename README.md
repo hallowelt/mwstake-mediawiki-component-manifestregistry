@@ -9,7 +9,7 @@ Provides a combined registry over all in the `attribute` section registered thin
 
 Add `"mwstake/mediawiki-component-manifestregistry": "~2.0"` to the `require` section of your `composer.json` file.
 
-Since 2.0 explicit initialization is required. This can be achived by
+Since 2.0 explicit initialization is required. This can be achieved by
 - either adding `"callback": "mwsInitComponents"` to your `extension.json`/`skin.json`
 - or calling `mwsInitComponents();` within you extensions/skins custom `callback` method
 
@@ -46,8 +46,8 @@ See also [`mwstake/mediawiki-componentloader`](https://github.com/hallowelt/mwst
 ```php
 $factory = \MediaWiki\MediaWikiServices::getInstance()->getService( 'MWStakeManifestRegistryFactory' );
 $registry = $factory->get( 'MyExtensionMyRegistry' );
-$myValues = $registry->get( 'subValue' );
-$allMyValues = $registry->getAll();
+$myValues = $registry->getValue( 'subValue' );
+$allMyValues = $registry->getAllValues();
 ```
 
 ## Configuration

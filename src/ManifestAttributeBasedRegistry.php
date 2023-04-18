@@ -38,20 +38,18 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	public function __construct( $attribName, $extensionRegistry = null, $overrides = null ) {
 		$this->attribName = $attribName;
 		$this->extensionRegistry = $extensionRegistry;
-		$this->overrides = $overrides;
 
 		if ( $this->extensionRegistry === null ) {
 			$this->extensionRegistry = ExtensionRegistry::getInstance();
 		}
-
-		if ( $this->overrides === null ) {
+		if ( $overrides === null ) {
 			$config = new GlobalVarConfig( 'mwsgManifestRegistry' );
-			$configOverrides = $config->get( 'Overrides' );
+			$overrides = $config->get( 'Overrides' );
 
-			$this->overrides = [];
-			if ( isset( $configOverrides[ $attribName ] ) ) {
-				$this->overrides = $configOverrides[ $attribName ];
-			}
+		}
+		$this->overrides = [];
+		if ( isset( $overrides[ $attribName ] ) ) {
+			$this->overrides = $overrides[ $attribName ];
 		}
 	}
 
