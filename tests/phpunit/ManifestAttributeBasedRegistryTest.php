@@ -2,12 +2,12 @@
 
 namespace MWStake\MediaWiki\Component\ManifestRegistry\Test;
 
-use ExtensionRegistry;
+use MediaWiki\Registration\ExtensionRegistry;
 use MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers ManifestAttributeBasedRegistry
+ * @covers \MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry
  */
 class ManifestAttributeBasedRegistryTest extends TestCase {
 
@@ -19,7 +19,7 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 	 * @param string $message
 	 *
 	 * @dataProvider provideGenericTestData
-	 * @covers ManifestAttributeBasedRegistry::getAllKeys
+	 * @covers \MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry::getAllKeys
 	 */
 	public function testGetAllKeys( $attributeName, $dummyExtensionAttributes, $overrides,
 		$expectedRegistry, $message ) {
@@ -44,7 +44,7 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 	 * @param string $message
 	 *
 	 * @dataProvider provideGenericTestData
-	 * @covers ManifestAttributeBasedRegistry::getAllValues
+	 * @covers \MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry::getAllValues
 	 */
 	public function testGetAllValues( $attributeName, $dummyExtensionAttributes, $overrides,
 		$expectedRegistry, $message ) {
@@ -68,7 +68,7 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 	 * @param string $message
 	 *
 	 * @dataProvider provideGenericTestData
-	 * @covers ManifestAttributeBasedRegistry::getValue
+	 * @covers \MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry::getValue
 	 */
 	public function testGetKeys( $attributeName, $dummyExtensionAttributes, $overrides,
 		$expectedRegistry, $message ) {
@@ -200,9 +200,9 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 		$mock
 			->expects( $this->any() )
 			->method( 'getAttribute' )
-			->will( $this->returnCallback( function ( $attrName ) use ( $dummyExtensionAttributes ) {
+			->willReturnCallback( static function ( $attrName ) use ( $dummyExtensionAttributes ) {
 				return $dummyExtensionAttributes[ $attrName ];
-			} ) );
+			} );
 
 		return $mock;
 	}
