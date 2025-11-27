@@ -1,6 +1,6 @@
 <?php
 
-namespace MWStake\MediaWiki\Component\ManifestRegistry\Test;
+namespace MWStake\MediaWiki\Component\ManifestRegistry\Test\Unit;
 
 use MediaWiki\Registration\ExtensionRegistry;
 use MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry;
