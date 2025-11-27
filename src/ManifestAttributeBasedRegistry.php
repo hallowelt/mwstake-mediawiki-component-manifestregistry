@@ -100,19 +100,18 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	protected function getRegistryArray() {
 		$registry = $this->extensionRegistry->getAttribute( $this->attribName );
 		if ( isset( $this->overrides[static::OVERRIDE_SET ] ) ) {
-			$registry = $this->overrides[static::OVERRIDE_SET ];
-		} else {
-			if ( isset( $this->overrides[static::OVERRIDE_MERGE ] ) ) {
-				$registry = array_merge(
-					$registry,
-					$this->overrides[static::OVERRIDE_MERGE ]
-				);
-			}
-			if ( isset( $this->overrides[static::OVERRIDE_REMOVE ] ) ) {
-				foreach ( $this->overrides[static::OVERRIDE_REMOVE ] as $removeKey ) {
-					if ( isset( $registry[ $removeKey ] ) ) {
-						unset( $registry[ $removeKey ] );
-					}
+			return $this->overrides[static::OVERRIDE_SET ];
+		}
+		if ( isset( $this->overrides[static::OVERRIDE_MERGE ] ) ) {
+			$registry = array_merge(
+				$registry,
+				$this->overrides[static::OVERRIDE_MERGE ]
+			);
+		}
+		if ( isset( $this->overrides[static::OVERRIDE_REMOVE ] ) ) {
+			foreach ( $this->overrides[static::OVERRIDE_REMOVE ] as $removeKey ) {
+				if ( isset( $registry[ $removeKey ] ) ) {
+					unset( $registry[ $removeKey ] );
 				}
 			}
 		}
