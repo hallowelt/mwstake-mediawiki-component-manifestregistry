@@ -3,13 +3,13 @@
 namespace MWStake\MediaWiki\Component\ManifestRegistry\Test\Unit;
 
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWikiUnitTestCase;
 use MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \MWStake\MediaWiki\Component\ManifestRegistry\ManifestAttributeBasedRegistry
  */
-class ManifestAttributeBasedRegistryTest extends TestCase {
+class ManifestAttributeBasedRegistryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param string $attributeName
@@ -114,8 +114,10 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 				'BlueSpiceFoundationLessVarsRegistry',
 				$dummyExtensionAttributes,
 				[
-					'set' => [
-						'@bs-color-primary' => 'GREEN',
+					'BlueSpiceFoundationLessVarsRegistry' => [
+						'set' => [
+							'@bs-color-primary' => 'GREEN',
+						]
 					]
 				],
 				[
@@ -127,8 +129,10 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 				'BlueSpiceFoundationLessVarsRegistry',
 				$dummyExtensionAttributes,
 				[
-					'merge' => [
-						'@bs-color-primary' => 'GREEN',
+					'BlueSpiceFoundationLessVarsRegistry' => [
+						'merge' => [
+							'@bs-color-primary' => 'GREEN',
+						]
 					]
 				],
 				[
@@ -142,7 +146,9 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 				'BlueSpiceFoundationLessVarsRegistry',
 				$dummyExtensionAttributes,
 				[
-					'remove' => [ '@bs-color-primary', '@bs-color-tertiary' ]
+					'BlueSpiceFoundationLessVarsRegistry' => [
+						'remove' => [ '@bs-color-primary', '@bs-color-tertiary' ]
+					]
 				],
 				[
 					'@bs-color-secondary' => 'ORANGE'
@@ -153,10 +159,12 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 				'BlueSpiceFoundationLessVarsRegistry',
 				$dummyExtensionAttributes,
 				[
-					'merge' => [
-						'@bs-color-primary' => 'GREEN',
-					],
-					'remove' => [ '@bs-color-tertiary' ]
+					'BlueSpiceFoundationLessVarsRegistry' => [
+						'merge' => [
+							'@bs-color-primary' => 'GREEN',
+						],
+						'remove' => [ '@bs-color-tertiary' ]
+					]
 				],
 				[
 					'@bs-color-primary' => 'GREEN',
@@ -168,13 +176,15 @@ class ManifestAttributeBasedRegistryTest extends TestCase {
 				'BlueSpiceFoundationLessVarsRegistry',
 				$dummyExtensionAttributes,
 				[
-					'set' => [
-						'@bs-color-tertiary' => 'PURPLE',
-					],
-					'merge' => [
-						'@bs-color-primary' => 'GREEN',
-					],
-					'remove' => [ '@bs-color-tertiary' ]
+					'BlueSpiceFoundationLessVarsRegistry' => [
+						'set' => [
+							'@bs-color-tertiary' => 'PURPLE',
+						],
+						'merge' => [
+							'@bs-color-primary' => 'GREEN',
+						],
+						'remove' => [ '@bs-color-tertiary' ]
+					]
 				],
 				[
 					'@bs-color-tertiary' => 'PURPLE'
