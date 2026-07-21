@@ -195,7 +195,6 @@ class ManifestAttributeBasedRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 *
 	 * @param array $dummyExtensionAttributes
 	 * @return ExtensionRegistry
 	 */

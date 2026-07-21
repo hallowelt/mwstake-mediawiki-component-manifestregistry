@@ -12,25 +12,21 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	public const OVERRIDE_REMOVE = 'remove';
 
 	/**
-	 *
 	 * @var string
 	 */
 	protected $attribName = '';
 
 	/**
-	 *
 	 * @var ExtensionRegistry
 	 */
 	protected $extensionRegistry = null;
 
 	/**
-	 *
 	 * @var array
 	 */
 	protected $overrides = [];
 
 	/**
-	 *
 	 * @param string $attribName
 	 * @param ExtensionRegistry|null $extensionRegistry
 	 * @param array|null $overrides
@@ -54,7 +50,6 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	}
 
 	/**
-	 *
 	 * @param string $key
 	 * @param string $default
 	 * @return string|callable
@@ -73,7 +68,6 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	}
 
 	/**
-	 *
 	 * @return string[]
 	 */
 	public function getAllKeys() {
@@ -82,7 +76,6 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	public function getAllValues() {
@@ -94,7 +87,6 @@ class ManifestAttributeBasedRegistry implements IRegistry {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	protected function getRegistryArray() {
